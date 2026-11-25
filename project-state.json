@@ -1,13 +1,17 @@
 {
   "project": "Catraca",
   "version": "1.0.0",
-  "updatedAt": "2026-11-25T15:20:00-03:00",
+  "updatedAt": "2026-11-25T16:25:00-03:00",
   "prd": "docs/PRD.md",
   "parallelWaves": [
     {
       "wave": 4,
       "features": ["F04", "F05", "F06"],
-      "prs": []
+      "prs": [
+        "https://github.com/bvresende/mba-ia-desafio-catraca/pull/4",
+        "https://github.com/bvresende/mba-ia-desafio-catraca/pull/5",
+        "https://github.com/bvresende/mba-ia-desafio-catraca/pull/6"
+      ]
     }
   ],
   "features": {
@@ -42,28 +46,28 @@
       "name": "Vitrine Pública e Área do Participante (Meus ingressos)",
       "wave": 4,
       "dir": "specs/004-f04-storefront-tickets",
-      "status": "pending",
+      "status": "done",
       "branch": "feat/f04-storefront-tickets",
-      "pr": null,
-      "latestReport": null
+      "pr": "https://github.com/bvresende/mba-ia-desafio-catraca/pull/4",
+      "latestReport": "specs/004-f04-storefront-tickets/reports/eval-001.md"
     },
     "F05": {
       "name": "API de Parceiros (Contrato Fixo)",
       "wave": 4,
       "dir": "specs/005-f05-partner-api",
-      "status": "pending",
+      "status": "done",
       "branch": "feat/f05-partner-api",
-      "pr": null,
-      "latestReport": null
+      "pr": "https://github.com/bvresende/mba-ia-desafio-catraca/pull/5",
+      "latestReport": "specs/005-f05-partner-api/reports/eval-001.md"
     },
     "F06": {
       "name": "Check-in e Painel do Organizador",
       "wave": 4,
       "dir": "specs/006-f06-checkin-dashboard",
-      "status": "pending",
+      "status": "done",
       "branch": "feat/f06-checkin-dashboard",
-      "pr": null,
-      "latestReport": null
+      "pr": "https://github.com/bvresende/mba-ia-desafio-catraca/pull/6",
+      "latestReport": "specs/006-f06-checkin-dashboard/reports/eval-001.md"
     },
     "F07": {
       "name": "Cancelamento Irreversível de Eventos e Estorno/Cancelamento",
