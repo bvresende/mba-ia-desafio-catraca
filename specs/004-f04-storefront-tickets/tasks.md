@@ -19,8 +19,8 @@ description: "Checklist de tarefas executáveis para implementação da Feature 
 
 **Purpose**: Garantir ambiente e contratos de integração com `F01`, `F02` e `F03`.
 
-- [ ] T001 Verificar assinaturas exportadas de `requireParticipant` (`src/modules/auth/`), `purchaseTicket` e `getEventSeatMetrics` (`src/modules/purchase/`), e layout SSR (`src/views/layout.ts`).
-- [ ] T002 Criar estrutura do módulo `src/modules/storefront/` e definir tipos de view-model para vitrine e ingressos do participante.
+- [x] T001 Verificar assinaturas exportadas de `requireParticipant` (`src/modules/auth/`), `purchaseTicket` e `getEventSeatMetrics` (`src/modules/purchase/`), e layout SSR (`src/views/layout.ts`).
+- [x] T002 Criar estrutura do módulo `src/modules/storefront/` e definir tipos de view-model para vitrine e ingressos do participante.
 
 ---
 
@@ -30,9 +30,9 @@ description: "Checklist de tarefas executáveis para implementação da Feature 
 
 **Independent Test**: Acessar `GET /` deslogado e logado verificando visibilidade exclusiva de eventos `published` e exibição correta de disponibilidade e `Ingressos esgotados`.
 
-- [ ] T003 [P] [US1] Implementar `renderStorefrontPage` e helpers de formatação (`formatPriceBrl`, `formatDateTimeBr`, `TICKET_STATUS_PT`) em `src/views/storefront.views.ts`, garantindo escape HTML e texto literal `Ingressos esgotados` quando `availableSeats === 0`.
-- [ ] T004 [US1] Implementar rota `GET /` em `src/modules/storefront/storefront.routes.ts` consultando apenas eventos com `status = 'published'` ordenados por `starts_at ASC` e enriquecendo cada item com `getEventSeatMetrics(event.id)`.
-- [ ] T005 [US1] Registrar `storefrontRoutes` em `src/app.ts` garantindo que `/` seja servido sem conflito com as rotas de `F01`–`F03`.
+- [x] T003 [P] [US1] Implementar `renderStorefrontPage` e helpers de formatação (`formatPriceBrl`, `formatDateTimeBr`, `TICKET_STATUS_PT`) em `src/views/storefront.views.ts`, garantindo escape HTML e texto literal `Ingressos esgotados` quando `availableSeats === 0`.
+- [x] T004 [US1] Implementar rota `GET /` em `src/modules/storefront/storefront.routes.ts` consultando apenas eventos com `status = 'published'` ordenados por `starts_at ASC` e enriquecendo cada item com `getEventSeatMetrics(event.id)`.
+- [x] T005 [US1] Registrar `storefrontRoutes` em `src/app.ts` garantindo que `/` seja servido sem conflito com as rotas de `F01`–`F03`.
 
 **Checkpoint**: Vitrine pública acessível em `http://localhost:3000/` listando apenas eventos publicados com vagas reais.
 
@@ -44,9 +44,9 @@ description: "Checklist de tarefas executáveis para implementação da Feature 
 
 **Independent Test**: Submeter `POST /events/:eventId/purchase` autenticado como participante para evento com 1 vaga e para evento esgotado, validando redirecionamento imediato e mensagem `Ingressos esgotados`.
 
-- [ ] T006 [US2] Adicionar formulário de compra (`POST /events/:eventId/purchase` com input `cardNumber` de 16 dígitos) nos cards disponíveis para participante autenticado em `src/views/storefront.views.ts`, e prompt de login/cadastro para visitantes.
-- [ ] T007 [US2] Implementar rota `POST /events/:eventId/purchase` em `src/modules/storefront/storefront.routes.ts` protegida por `requireParticipant`, invocando `purchaseTicket` com `channel: 'storefront'`, redirecionando `303` para `/my-tickets` em sucesso e exibindo literalmente `Ingressos esgotados` (status `409`) quando ocorrer `sold_out`.
-- [ ] T008 [US2] Tratar erros de cartão inválido (`422`) e evento indisponível (`404`) em `POST /events/:eventId/purchase` com feedback claro na vitrine sem criar ingresso.
+- [x] T006 [US2] Adicionar formulário de compra (`POST /events/:eventId/purchase` com input `cardNumber` de 16 dígitos) nos cards disponíveis para participante autenticado em `src/views/storefront.views.ts`, e prompt de login/cadastro para visitantes.
+- [x] T007 [US2] Implementar rota `POST /events/:eventId/purchase` em `src/modules/storefront/storefront.routes.ts` protegida por `requireParticipant`, invocando `purchaseTicket` com `channel: 'storefront'`, redirecionando `303` para `/my-tickets` em sucesso e exibindo literalmente `Ingressos esgotados` (status `409`) quando ocorrer `sold_out`.
+- [x] T008 [US2] Tratar erros de cartão inválido (`422`) e evento indisponível (`404`) em `POST /events/:eventId/purchase` com feedback claro na vitrine sem criar ingresso.
 
 **Checkpoint**: Fluxo completo de compra na vitrine integrado ao motor `F03`.
 
@@ -58,9 +58,9 @@ description: "Checklist de tarefas executáveis para implementação da Feature 
 
 **Independent Test**: Comprar com cartões `0001` e `0002`, acessar `GET /my-tickets` antes e após a resposta do gateway e confirmar os rótulos `pendente`, `confirmado`, `recusado`, o código único e o isolamento entre participantes.
 
-- [ ] T009 [P] [US3] Implementar `renderMyTicketsPage` em `src/views/storefront.views.ts` exibindo nome do evento, status literal em português (`pendente`, `confirmado`, `recusado`, `cancelado`, `estornado`) e código único do ingresso (`code`).
-- [ ] T010 [US3] Implementar rota `GET /my-tickets` em `src/modules/storefront/storefront.routes.ts` protegida por `requireParticipant`, consultando exclusivamente ingressos de `tickets.user_id = request.user.id` com join em `events`.
-- [ ] T011 [US3] Garantir link visível para "Meus ingressos" (`/my-tickets`) na navegação do layout quando autenticado como participante.
+- [x] T009 [P] [US3] Implementar `renderMyTicketsPage` em `src/views/storefront.views.ts` exibindo nome do evento, status literal em português (`pendente`, `confirmado`, `recusado`, `cancelado`, `estornado`) e código único do ingresso (`code`).
+- [x] T010 [US3] Implementar rota `GET /my-tickets` em `src/modules/storefront/storefront.routes.ts` protegida por `requireParticipant`, consultando exclusivamente ingressos de `tickets.user_id = request.user.id` com join em `events`.
+- [x] T011 [US3] Garantir link visível para "Meus ingressos" (`/my-tickets`) na navegação do layout quando autenticado como participante.
 
 **Checkpoint**: Participante visualiza e acompanha o ciclo completo dos próprios ingressos.
 
@@ -70,9 +70,9 @@ description: "Checklist de tarefas executáveis para implementação da Feature 
 
 **Purpose**: Cobrir todos os critérios `F04-AC1`..`F04-AC4` e `CF-04`..`CF-06` na suíte automatizada e validar gates.
 
-- [ ] T012 Escrever testes de integração em `tests/f04.storefront.test.ts` cobrindo: visibilidade exclusiva de publicados (`F04-AC1`, `CF-05`), compra imediata e isolamento de participante (`F04-AC2`, `CF-04`), esgotamento por `pending`/`confirmed` exibindo `Ingressos esgotados` (`F04-AC3`, `CF-06`), transição assíncrona `0001` → `confirmado` e `0002` → `recusado` com liberação de vaga e exibição do código único e dos 5 rótulos em português (`F04-AC4`, `CF-06`).
-- [ ] T013 Executar `./scripts/gates.sh` e confirmar que typecheck, checagens e toda a suíte de testes passam com código `0`.
-- [ ] T014 Executar smoke test manual contra `./scripts/up.sh` verificando `GET /`, cadastro/login de participante, compra e `GET /my-tickets`.
+- [x] T012 Escrever testes de integração em `tests/f04.storefront.test.ts` cobrindo: visibilidade exclusiva de publicados (`F04-AC1`, `CF-05`), compra imediata e isolamento de participante (`F04-AC2`, `CF-04`), esgotamento por `pending`/`confirmed` exibindo `Ingressos esgotados` (`F04-AC3`, `CF-06`), transição assíncrona `0001` → `confirmado` e `0002` → `recusado` com liberação de vaga e exibição do código único e dos 5 rótulos em português (`F04-AC4`, `CF-06`).
+- [x] T013 Executar `./scripts/gates.sh` e confirmar que typecheck, checagens e toda a suíte de testes passam com código `0`.
+- [ ] T014 Executar smoke test manual contra `./scripts/up.sh` verificando `GET /`, cadastro/login de participante, compra e `GET /my-tickets` *(pendente: não executado em paralelo na Wave 4 para evitar conflito na porta 3000)*.
 
 ---
 

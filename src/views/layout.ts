@@ -203,6 +203,78 @@ th {
   background: var(--danger-bg);
   color: var(--danger);
 }
+.badge-sold-out,
+.badge-ticket-declined,
+.badge-ticket-cancelled {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+.badge-ticket-pending {
+  background: var(--warn-bg);
+  color: var(--warn);
+}
+.badge-ticket-confirmed {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.badge-ticket-refunded {
+  background: var(--bg);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+.event-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.event-card-error {
+  border-color: var(--danger);
+}
+.event-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.event-card-header h2 {
+  font-size: 1.15rem;
+  margin: 0;
+}
+.event-price {
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+.event-meta {
+  margin: 0 0 1rem;
+  display: grid;
+  gap: 0.45rem;
+}
+.event-meta dt {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
+.event-meta dd {
+  margin: 0;
+}
+.purchase-form {
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.event-sold-out {
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
 `;
 
 function renderNav(currentUser: AuthUser | null): string {
@@ -217,7 +289,7 @@ function renderNav(currentUser: AuthUser | null): string {
   const roleLinks =
     currentUser.role === 'organizer'
       ? `<a href="/organizer/events">Área do Organizador</a>`
-      : `<a href="/tickets">Meus ingressos</a>`;
+      : `<a href="/my-tickets">Meus ingressos</a>`;
 
   const roleLabel =
     currentUser.role === 'organizer' ? 'Organizador' : 'Participante';
