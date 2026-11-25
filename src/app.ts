@@ -7,6 +7,10 @@ import {
   requireOrganizer,
 } from './modules/auth/auth.middleware.js';
 import { authRoutes } from './modules/auth/auth.routes.js';
+import {
+  checkinRoutes,
+  checkinSectionLoader,
+} from './modules/checkin/checkin.routes.js';
 import { eventsRoutes } from './modules/events/events.routes.js';
 import { renderLayout } from './views/layout.js';
 
@@ -30,7 +34,10 @@ export function buildApp(): FastifyInstance {
   });
 
   app.register(authRoutes);
-  app.register(eventsRoutes);
+  app.register(eventsRoutes, {
+    sectionLoaders: [checkinSectionLoader],
+  });
+  app.register(checkinRoutes);
 
   app.setNotFoundHandler(async (request, reply) => {
     if (request.currentUser === undefined) {
