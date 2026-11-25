@@ -1,7 +1,6 @@
 import type { FastifyInstance, FastifyReply } from 'fastify';
 import { env } from '../../config/env.js';
 import {
-  renderHomePage,
   renderLoginPage,
   renderRegisterPage,
 } from '../../views/auth.views.js';
@@ -32,12 +31,6 @@ function setSessionCookie(
 }
 
 export async function authRoutes(app: FastifyInstance): Promise<void> {
-  app.get('/', async (request, reply) => {
-    return reply
-      .type('text/html; charset=utf-8')
-      .send(renderHomePage(request.currentUser));
-  });
-
   app.get('/register', async (request, reply) => {
     if (request.currentUser) {
       return reply.redirect(
