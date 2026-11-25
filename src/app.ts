@@ -7,6 +7,10 @@ import {
   requireOrganizer,
 } from './modules/auth/auth.middleware.js';
 import { authRoutes } from './modules/auth/auth.routes.js';
+import {
+  checkinRoutes,
+  checkinSectionLoader,
+} from './modules/checkin/checkin.routes.js';
 import { eventsRoutes } from './modules/events/events.routes.js';
 import { partnerRoutes } from './modules/partner/partner.routes.js';
 import { storefrontRoutes } from './modules/storefront/storefront.routes.js';
@@ -32,7 +36,10 @@ export function buildApp(): FastifyInstance {
   });
 
   app.register(authRoutes);
-  app.register(eventsRoutes);
+  app.register(eventsRoutes, {
+    sectionLoaders: [checkinSectionLoader],
+  });
+  app.register(checkinRoutes);
   app.register(storefrontRoutes);
   app.register(partnerRoutes, { prefix: '/api/partner' });
 
