@@ -1,0 +1,78 @@
+{
+  "project": "Catraca",
+  "version": "1.0.0",
+  "updatedAt": "2026-11-25T15:20:00-03:00",
+  "prd": "docs/PRD.md",
+  "parallelWaves": [
+    {
+      "wave": 4,
+      "features": ["F04", "F05", "F06"],
+      "prs": []
+    }
+  ],
+  "features": {
+    "F01": {
+      "name": "Fundação, Harness, Autenticação e Seed",
+      "wave": 1,
+      "dir": "specs/001-f01-foundation-auth",
+      "status": "pending",
+      "branch": "feat/f01-foundation-auth",
+      "pr": null,
+      "latestReport": null
+    },
+    "F02": {
+      "name": "Gestão de Eventos pelo Organizador",
+      "wave": 2,
+      "dir": "specs/002-f02-organizer-events",
+      "status": "pending",
+      "branch": "feat/f02-organizer-events",
+      "pr": null,
+      "latestReport": null
+    },
+    "F03": {
+      "name": "Motor de Compras, Concorrência e Gateway Simulado",
+      "wave": 3,
+      "dir": "specs/003-f03-purchase-gateway",
+      "status": "pending",
+      "branch": "feat/f03-purchase-gateway",
+      "pr": null,
+      "latestReport": null
+    },
+    "F04": {
+      "name": "Vitrine Pública e Área do Participante (Meus ingressos)",
+      "wave": 4,
+      "dir": "specs/004-f04-storefront-tickets",
+      "status": "pending",
+      "branch": "feat/f04-storefront-tickets",
+      "pr": null,
+      "latestReport": null
+    },
+    "F05": {
+      "name": "API de Parceiros (Contrato Fixo)",
+      "wave": 4,
+      "dir": "specs/005-f05-partner-api",
+      "status": "pending",
+      "branch": "feat/f05-partner-api",
+      "pr": null,
+      "latestReport": null
+    },
+    "F06": {
+      "name": "Check-in e Painel do Organizador",
+      "wave": 4,
+      "dir": "specs/006-f06-checkin-dashboard",
+      "status": "pending",
+      "branch": "feat/f06-checkin-dashboard",
+      "pr": null,
+      "latestReport": null
+    },
+    "F07": {
+      "name": "Cancelamento Irreversível de Eventos e Estorno/Cancelamento",
+      "wave": 5,
+      "dir": "specs/007-f07-event-cancellation",
+      "status": "pending",
+      "branch": "feat/f07-event-cancellation",
+      "pr": null,
+      "latestReport": null
+    }
+  }
+}
