@@ -1,4 +1,5 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
+import { renderEventCancellationSection } from '../../views/cancellation.views.js';
 import {
   renderEventCheckinSection,
   renderEventDashboardSection,
@@ -94,6 +95,7 @@ export async function checkinRoutes(app: FastifyInstance): Promise<void> {
                   ? renderEventDashboardSection(metrics)
                   : undefined,
                 checkinHtml: renderEventCheckinSection(event, result, rawCode),
+                cancelHtml: renderEventCancellationSection(event),
               },
             }),
           );
