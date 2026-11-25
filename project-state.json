@@ -33,10 +33,10 @@
       "name": "Motor de Compras, Concorrência e Gateway Simulado",
       "wave": 3,
       "dir": "specs/003-f03-purchase-gateway",
-      "status": "pending",
+      "status": "done",
       "branch": "feat/f03-purchase-gateway",
-      "pr": null,
-      "latestReport": null
+      "pr": "https://github.com/bvresende/mba-ia-desafio-catraca/pull/3",
+      "latestReport": "specs/003-f03-purchase-gateway/reports/eval-001.md"
     },
     "F04": {
       "name": "Vitrine Pública e Área do Participante (Meus ingressos)",
