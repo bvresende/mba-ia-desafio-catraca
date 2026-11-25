@@ -8,6 +8,7 @@ import {
 } from './modules/auth/auth.middleware.js';
 import { authRoutes } from './modules/auth/auth.routes.js';
 import { eventsRoutes } from './modules/events/events.routes.js';
+import { partnerRoutes } from './modules/partner/partner.routes.js';
 import { storefrontRoutes } from './modules/storefront/storefront.routes.js';
 import { renderLayout } from './views/layout.js';
 
@@ -33,6 +34,7 @@ export function buildApp(): FastifyInstance {
   app.register(authRoutes);
   app.register(eventsRoutes);
   app.register(storefrontRoutes);
+  app.register(partnerRoutes, { prefix: '/api/partner' });
 
   app.setNotFoundHandler(async (request, reply) => {
     if (request.currentUser === undefined) {
