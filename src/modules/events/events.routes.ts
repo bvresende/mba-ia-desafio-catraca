@@ -81,7 +81,7 @@ async function resolveSections(
   return { dashboardHtml, checkinHtml, cancelHtml };
 }
 
-function handleOwnershipError(
+export function handleOrganizerOwnershipError(
   error: unknown,
   request: FastifyRequest,
   reply: FastifyReply,
@@ -212,6 +212,8 @@ export async function eventsRoutes(
           successMessage = 'Evento publicado com sucesso.';
         } else if (query['saved'] === '1') {
           successMessage = 'Alterações salvas com sucesso.';
+        } else if (query['cancelled'] === '1') {
+          successMessage = 'Evento cancelado com sucesso.';
         }
 
         return reply
@@ -224,7 +226,7 @@ export async function eventsRoutes(
             }),
           );
       } catch (err) {
-        if (handleOwnershipError(err, request, reply)) {
+        if (handleOrganizerOwnershipError(err, request, reply)) {
           return;
         }
         throw err;
@@ -251,7 +253,7 @@ export async function eventsRoutes(
 
         return reply.redirect(`/organizer/events/${eventId}?saved=1`);
       } catch (err) {
-        if (handleOwnershipError(err, request, reply)) {
+        if (handleOrganizerOwnershipError(err, request, reply)) {
           return;
         }
 
@@ -298,7 +300,7 @@ export async function eventsRoutes(
         await publishEvent(organizer.id, eventId);
         return reply.redirect(`/organizer/events/${eventId}?published=1`);
       } catch (err) {
-        if (handleOwnershipError(err, request, reply)) {
+        if (handleOrganizerOwnershipError(err, request, reply)) {
           return;
         }
 

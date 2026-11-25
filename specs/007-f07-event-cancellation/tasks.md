@@ -19,8 +19,8 @@ description: "Checklist de tarefas executáveis para implementação da Feature 
 
 **Purpose**: Confirmar alinhamento de `F02`, `F03`, `F04`, `F05` e `F06` com o estado `cancelled`.
 
-- [ ] T001 Inspecionar `src/modules/events/` (bloqueio de edição/republicação em `cancelled`), `src/modules/purchase/` (guard condicional do callback do gateway contra `cancelled`) e `src/modules/checkin/` (métricas e `Evento cancelado` para eventos cancelados).
-- [ ] T002 Ajustar, se necessário, qualquer ponto em `F02`/`F03`/`F06` para garantir que: edição/republicação rejeitam `cancelled`, callback tardio de gateway nunca altera `cancelled`, `availableSeats` retorna `0` e `Check-ins` conta `status = 'confirmed' AND checked_in = true`.
+- [x] T001 Inspecionar `src/modules/events/` (bloqueio de edição/republicação em `cancelled`), `src/modules/purchase/` (guard condicional do callback do gateway contra `cancelled`) e `src/modules/checkin/` (métricas e `Evento cancelado` para eventos cancelados).
+- [x] T002 Ajustar, se necessário, qualquer ponto em `F02`/`F03`/`F06` para garantir que: edição/republicação rejeitam `cancelled`, callback tardio de gateway nunca altera `cancelled`, `availableSeats` retorna `0` e `Check-ins` conta `status = 'confirmed' AND checked_in = true`.
 
 ---
 
@@ -28,9 +28,9 @@ description: "Checklist de tarefas executáveis para implementação da Feature 
 
 **Goal**: Implementar o cancelamento irreversível atômico sob `SELECT ... FOR UPDATE` e `R13`.
 
-- [ ] T003 [US1] Implementar `cancelEvent(eventId, organizerId)` em `src/modules/cancellation/cancellation.service.ts` abrindo transação PostgreSQL com `SELECT ... FROM events WHERE id = $1 FOR UPDATE`, validando ownership (`R13`) e `status === 'published'`, atualizando `events.status = 'cancelled'`, `tickets` `confirmed` → `refunded` e `tickets` `pending` → `cancelled`.
-- [ ] T004 [US1] Implementar `POST /organizer/events/:eventId/cancel` em `src/modules/cancellation/cancellation.routes.ts` protegida por `requireOrganizer`, invocando `cancelEvent`, bloqueando não-proprietários (`403`/`404`) e redirecionando (`303`) para `/organizer/events/:eventId` em sucesso.
-- [ ] T005 [US1] Registrar `cancellationRoutes` em `src/app.ts`.
+- [x] T003 [US1] Implementar `cancelEvent(eventId, organizerId)` em `src/modules/cancellation/cancellation.service.ts` abrindo transação PostgreSQL com `SELECT ... FROM events WHERE id = $1 FOR UPDATE`, validando ownership (`R13`) e `status === 'published'`, atualizando `events.status = 'cancelled'`, `tickets` `confirmed` → `refunded` e `tickets` `pending` → `cancelled`.
+- [x] T004 [US1] Implementar `POST /organizer/events/:eventId/cancel` em `src/modules/cancellation/cancellation.routes.ts` protegida por `requireOrganizer`, invocando `cancelEvent`, bloqueando não-proprietários (`403`/`404`) e redirecionando (`303`) para `/organizer/events/:eventId` em sucesso.
+- [x] T005 [US1] Registrar `cancellationRoutes` em `src/app.ts`.
 
 **Checkpoint**: Endpoint `POST /organizer/events/:eventId/cancel` operacional e transacional.
 
@@ -40,7 +40,7 @@ description: "Checklist de tarefas executáveis para implementação da Feature 
 
 **Goal**: Exibir o botão de cancelar em eventos publicados e bloquear edição/publicação + exibir `Evento cancelado` no check-in quando o evento estiver cancelado.
 
-- [ ] T006 [US1] Atualizar `src/views/organizer.views.ts` na página `/organizer/events/:eventId` para:
+- [x] T006 [US1] Atualizar `src/views/organizer.views.ts` na página `/organizer/events/:eventId` para:
   - Exibir ação de cancelamento (`POST /organizer/events/:eventId/cancel`) apenas quando `event.status === 'published'`;
   - Quando `event.status === 'cancelled'`, desabilitar/ocultar edição e publicação, destacar estado cancelado e exibir literalmente `Evento cancelado` na área de check-in;
   - Exibir os 6 indicadores do painel refletindo `Confirmados: 0`, `Pendentes: 0`, `Check-ins: 0`, `Vagas disponíveis: 0`, `Receita: R$ 0,00` e `Estornados`.
@@ -53,7 +53,7 @@ description: "Checklist de tarefas executáveis para implementação da Feature 
 
 **Purpose**: Cobrir todos os critérios `F07-AC1`..`F07-AC5` e `CF-12`..`CF-16`, incluindo callback tardio do gateway lento.
 
-- [ ] T007 [US2] Escrever `tests/f07.cancellation.test.ts` cobrindo:
+- [x] T007 [US2] Escrever `tests/f07.cancellation.test.ts` cobrindo:
   - Cancelamento irreversível pelo Organizador A, bloqueio de Organizador B/participante/visitante e bloqueio de edição/republicação pós-cancelamento (`F07-AC1`, `CF-12`);
   - Transição imediata (< 10s) de `confirmed` (com e sem check-in, vitrine + API) → `refunded`, `pending` → `cancelled` e preservação de `declined` (`F07-AC2`, `CF-13`);
   - Proteção contra callback tardio de gateway com cartões `0003` (aprovação lenta) e `0004` (recusa lenta): ingressos passam a `cancelled` imediatamente e permanecem `cancelled` depois que o gateway conclui (`F07-AC3`, `CF-13`);
@@ -61,7 +61,7 @@ description: "Checklist de tarefas executáveis para implementação da Feature 
   - Desaparecimento em `GET /api/partner/events`, resposta `404 {"error":"event_not_available"}` em `POST /api/partner/events/:id/purchases` e status `refunded`/`cancelled` em `GET /api/partner/tickets/:id` (`CF-15`);
   - Página `/organizer/events/:id` com edição bloqueada, check-in exibindo `Evento cancelado` (e prioridade 1 preservada para código de outro evento) e painel exibindo `Confirmados: 0`, `Pendentes: 0`, `Check-ins: 0`, `Vagas disponíveis: 0`, `Receita: R$ 0,00` e `Estornados` exato (`F07-AC4`, `F07-AC5`, `CF-16`);
   - Corrida concorrente entre `purchaseTicket` e `cancelEvent` sem inconsistência de estado.
-- [ ] T008 Executar `./scripts/gates.sh` e confirmar exit code `0` em typecheck e em toda a suíte `F01`–`F07`.
+- [x] T008 Executar `./scripts/gates.sh` e confirmar exit code `0` em typecheck e em toda a suíte `F01`–`F07`.
 - [ ] T009 Executar smoke test real contra `./scripts/up.sh` com cartão `0003` aguardando 45s após o cancelamento para confirmar comportamento real de produção antes da avaliação independente.
 
 ---
