@@ -1,11 +1,14 @@
 import { randomBytes } from 'node:crypto';
 import { and, desc, asc, eq, inArray, sql } from 'drizzle-orm';
-import { db, type Database } from '../../db/client.js';
+import { db } from '../../db/client.js';
 import { events, tickets, type Event } from '../../db/schema.js';
+import {
+  getOccupiedSeatCount,
+  type DbExecutor,
+} from '../purchases/purchase.service.js';
 
-export type DbExecutor =
-  | Database
-  | Parameters<Parameters<Database['transaction']>[0]>[0];
+export type { DbExecutor };
+export { getOccupiedSeatCount };
 
 export class EventValidationError extends Error {
   constructor(message: string) {
@@ -262,25 +265,6 @@ export function parseFutureStartsAt(
   }
 
   return parsed;
-}
-
-export async function getOccupiedSeatCount(
-  eventId: string,
-  executor: DbExecutor = db,
-): Promise<number> {
-  const [row] = await executor
-    .select({
-      count: sql<number>`count(*)::int`,
-    })
-    .from(tickets)
-    .where(
-      and(
-        eq(tickets.eventId, eventId),
-        inArray(tickets.status, ['pending', 'confirmed']),
-      ),
-    );
-
-  return row?.count ?? 0;
 }
 
 export const countOccupiedSeats = getOccupiedSeatCount;

@@ -1,12 +1,14 @@
 import { env } from './config/env.js';
 import { closeDb } from './db/client.js';
 import { buildApp } from './app.js';
+import { cancelPendingTimers } from './modules/purchases/gateway.service.js';
 
 const app = buildApp();
 
 async function shutdown(signal: string): Promise<void> {
   app.log.info({ signal }, 'Shutting down Catraca server...');
   try {
+    cancelPendingTimers();
     await app.close();
     await closeDb();
     process.exit(0);
