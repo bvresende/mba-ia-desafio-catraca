@@ -3,7 +3,6 @@ import { env } from '../../config/env.js';
 import {
   renderHomePage,
   renderLoginPage,
-  renderOrganizerPlaceholderPage,
   renderRegisterPage,
 } from '../../views/auth.views.js';
 import { requireOrganizer } from './auth.middleware.js';
@@ -121,17 +120,6 @@ export async function authRoutes(app: FastifyInstance): Promise<void> {
     { preHandler: requireOrganizer },
     async (_request, reply) => {
       return reply.redirect('/organizer/events');
-    },
-  );
-
-  app.get(
-    '/organizer/events',
-    { preHandler: requireOrganizer },
-    async (request, reply) => {
-      const organizer = request.currentUser!;
-      return reply
-        .type('text/html; charset=utf-8')
-        .send(renderOrganizerPlaceholderPage(organizer));
     },
   );
 }

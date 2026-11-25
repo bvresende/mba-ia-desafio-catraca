@@ -184,6 +184,25 @@ th {
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.badge-draft {
+  background: var(--warn-bg);
+  color: var(--warn);
+}
+.badge-published {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.badge-cancelled {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
 `;
 
 function renderNav(currentUser: AuthUser | null): string {
