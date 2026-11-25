@@ -15,10 +15,10 @@
       "name": "Fundação, Harness, Autenticação e Seed",
       "wave": 1,
       "dir": "specs/001-f01-foundation-auth",
-      "status": "pending",
+      "status": "done",
       "branch": "feat/f01-foundation-auth",
-      "pr": null,
-      "latestReport": null
+      "pr": "https://github.com/bvresende/mba-ia-desafio-catraca/pull/1",
+      "latestReport": "specs/001-f01-foundation-auth/reports/eval-001.md"
     },
     "F02": {
       "name": "Gestão de Eventos pelo Organizador",
