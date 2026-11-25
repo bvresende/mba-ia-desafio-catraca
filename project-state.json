@@ -1,7 +1,7 @@
 {
   "project": "Catraca",
   "version": "1.0.0",
-  "updatedAt": "2026-11-25T16:25:00-03:00",
+  "updatedAt": "2026-11-25T16:33:00-03:00",
   "prd": "docs/PRD.md",
   "parallelWaves": [
     {
@@ -73,10 +73,10 @@
       "name": "Cancelamento Irreversível de Eventos e Estorno/Cancelamento",
       "wave": 5,
       "dir": "specs/007-f07-event-cancellation",
-      "status": "pending",
+      "status": "done",
       "branch": "feat/f07-event-cancellation",
-      "pr": null,
-      "latestReport": null
+      "pr": "https://github.com/bvresende/mba-ia-desafio-catraca/pull/7",
+      "latestReport": "specs/007-f07-event-cancellation/reports/eval-001.md"
     }
   }
 }
