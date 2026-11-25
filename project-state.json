@@ -24,10 +24,10 @@
       "name": "Gestão de Eventos pelo Organizador",
       "wave": 2,
       "dir": "specs/002-f02-organizer-events",
-      "status": "pending",
+      "status": "done",
       "branch": "feat/f02-organizer-events",
-      "pr": null,
-      "latestReport": null
+      "pr": "https://github.com/bvresende/mba-ia-desafio-catraca/pull/2",
+      "latestReport": "specs/002-f02-organizer-events/reports/eval-001.md"
     },
     "F03": {
       "name": "Motor de Compras, Concorrência e Gateway Simulado",
